@@ -1,22 +1,22 @@
+class NoteModel {
+  final int noteId;
+  String noteTitle;
+  String noteContent;
+  final String noteCreatedDate;
 
-class Note {
-  final int id;
-  String title;
-  DateTime date;
-
-  Note({
-    required this.id,
-    required this.title,
-    required this.date,
+  NoteModel({
+    required this.noteId,
+    required this.noteTitle,
+    required this.noteContent,
+    required this.noteCreatedDate,
   });
 
-  factory Note.fromMap(Map<String, dynamic> map) {
-    return Note(
-      id: map['id'],
-      title: map['title'].toString(),
-      date: DateTime.parse(
-        map['date'],
-      ),
+  factory NoteModel.fromMap(Map<String, dynamic> data) {
+    return NoteModel(
+      noteId: data['id'],
+      noteTitle: data['title'],
+      noteContent: data['content'],
+      noteCreatedDate: data['date'],
     );
   }
 }

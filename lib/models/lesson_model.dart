@@ -1,4 +1,4 @@
-import 'package:full_app/models/quiz_model.dart';
+import 'package:settings_page/models/quiz_model.dart';
 
 class Lesson {
   final int courseId;

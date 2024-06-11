@@ -1,4 +1,4 @@
-import 'lesson_model.dart';
+import 'package:settings_page/models/lesson_model.dart';
 
 class Course {
   String courseId;

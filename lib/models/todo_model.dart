@@ -1,25 +1,35 @@
-
-import 'package:json_annotation/json_annotation.dart';
-part 'todo_model.g.dart';
-
-@JsonSerializable()
 class Todo {
-  String id;
-  String title;
-  String date;
-  bool isCompleted;
+  final String todoId;
+  String todoTitle;
+  String todoDescription;
+  final String todoCreatedDate;
+  bool isDone;
 
-  Todo(
-      {required this.id,
-        required this.title,
-        required this.date,
-        required this.isCompleted});
+  Todo({
+    required this.todoId,
+    required this.todoTitle,
+    required this.todoDescription,
+    required this.todoCreatedDate,
+    required this.isDone,
+  });
 
   factory Todo.fromJson(Map<String, dynamic> json) {
-    return _$TodoFromJson(json);
+    return Todo(
+      todoId: json['id'],
+      todoTitle: json['title'],
+      todoDescription: json['description'],
+      todoCreatedDate: json['created-date'],
+      isDone: json['is-done'] == 'true' || json['is-done'] == true,
+    );
   }
 
   Map<String, dynamic> toJson() {
-    return _$TodoToJson(this);
+    return {
+      'id': todoId,
+      'title': todoTitle,
+      'description': todoDescription,
+      'created-date': todoCreatedDate,
+      'is-done': isDone,
+    };
   }
 }
