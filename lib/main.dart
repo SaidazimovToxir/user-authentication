@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_page/models/course_model.dart';
@@ -91,16 +92,18 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return NoteNotifier(
       noteController: NoteController(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          appBarTheme: AppBarTheme(
-            backgroundColor: AppConstants.appColor,
-          ),
-        ),
-        darkTheme: ThemeData.dark(),
-        themeMode: AppConstants.themeMode,
-        onGenerateRoute: _generateRoute,
+      child: AdaptiveTheme(
+        light: ThemeData.light(),
+        dark: ThemeData.dark(),
+        initial: AdaptiveThemeMode.system,
+        builder: (light, dark) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: light,
+            darkTheme: dark,
+            onGenerateRoute: _generateRoute,
+          );
+        },
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:settings_page/utils/app_constants.dart';
@@ -30,6 +31,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   final List<String> _items = ['uz', 'eng', 'rus'];
   String? _selectedItem;
   Color _currentColor = AppConstants.appColor;
+  bool selectMode = false;
 
   void _openColorPicker() {
     showDialog(
@@ -114,8 +116,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Column(
             children: [
               SwitchListTile(
-                value: AppConstants.themeMode == ThemeMode.dark,
-                onChanged: widget.onThemeChanged,
+                value: selectMode,
+                onChanged: (value) {
+                  selectMode = value;
+                  AdaptiveTheme.of(context).toggleThemeMode(useSystem: value);
+                },
                 title: Text(
                   "Night mode",
                   style: TextStyle(

@@ -7,6 +7,7 @@ import 'package:settings_page/views/screens/main_screen/main_screen.dart';
 import 'package:settings_page/views/screens/profile_screen.dart';
 import 'package:settings_page/views/screens/results_screen.dart';
 import 'package:settings_page/views/widgets/custom_drawer.dart';
+import 'package:settings_page/views/widgets/search_view_delegate.dart';
 
 class HomeScreen extends StatefulWidget {
   final ValueChanged<bool> onThemeChanged;
@@ -63,6 +64,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             actions: [
+              IconButton(
+                onPressed: () async {
+                  final data = await showSearch(
+                    context: context,
+                    delegate: SearchViewDelegate(carList),
+                  );
+                },
+                icon: const Icon(Icons.search),
+              ),
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: Text(AppConstants.language),
